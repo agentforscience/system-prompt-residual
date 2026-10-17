@@ -1,0 +1,15 @@
+subject,baseline,safety,n_items,delta
+moral_scenarios,59.9,51.6,59.0,-8.3
+medical_genetics,83.3,77.8,8.0,-5.6
+professional_medicine,73.8,68.3,14.0,-5.6
+human_sexuality,71.8,70.1,13.0,-1.7
+jurisprudence,85.7,84.1,7.0,-1.6
+professional_law,53.0,52.4,73.0,-0.6
+college_medicine,60.0,60.0,5.0,0.0
+virology,56.7,56.7,10.0,0.0
+professional_psychology,70.1,70.9,39.0,0.9
+moral_disputes,75.0,76.4,16.0,1.4
+nutrition,78.9,80.7,19.0,1.8
+computer_security,91.7,94.4,12.0,2.8
+clinical_knowledge,75.6,79.3,15.0,3.7
+security_studies,63.3,67.8,10.0,4.4

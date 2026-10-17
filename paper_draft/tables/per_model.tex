@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{\textbf{Lenient $\Delta$ (pp)}} & \multicolumn{3}{c}{\textbf{Length ratio}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+\textbf{Category} & \llama & \qwentwo & \qwenthree & \llama & \qwentwo & \qwenthree \\
+\midrule
+\safety     & $-$0.7 & +0.3 & {\bf +1.1} & 1.19$\times$ & 1.04$\times$ & 1.04$\times$ \\
+\persona    & $-$4.4 & $-$5.1 & {\bf +0.2} & 2.10$\times$ & 1.76$\times$ & 2.11$\times$ \\
+\format     & $-$4.1 & $-$3.7 & {\bf +0.2} & 1.14$\times$ & 0.82$\times$ & 0.94$\times$ \\
+\constraint & {\bf $-$4.6} & $-$14.2 & $-$8.2 & 0.55$\times$ & 0.33$\times$ & 0.37$\times$ \\
+\bottomrule
+\end{tabular}}
+\caption{Per-model category effects (greedy, lenient, mean over tasks and variants) and output-length ratios relative to \baseline. The most robust model in each row is in \textbf{bold}. \qwenthree is unaffected by personas and format prompts, but still loses 8.2\pp under constraints; \qwentwo is hurt most by constraints.}
+\label{tab:per_model}
+\end{table}

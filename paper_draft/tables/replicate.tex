@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+& \multicolumn{2}{c}{\textbf{Lenient $\Delta$ (pp)}} & \multicolumn{2}{c}{\textbf{Strict $\Delta$ (pp)}} & \textbf{Length ratio} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-6}
+\textbf{Category} & Greedy & $T{=}0.7$ & Greedy & $T{=}0.7$ & Greedy / $T{=}0.7$ \\
+\midrule
+\safety     & {\bf +0.2} \ci{$-$0.4}{0.9} & {\bf +0.4} \ci{$-$0.3}{1.1} & $-$4.4 & $-$5.1 & 1.07$\times$ / 1.07$\times$ \\
+\persona    & $-$3.1 \ci{$-$4.0}{$-$2.2} & $-$2.8 \ci{$-$3.6}{$-$1.9} & $-$14.8 & $-$15.2 & 1.99$\times$ / 1.99$\times$ \\
+\format     & $-$2.5 \ci{$-$3.6}{$-$1.6} & $-$2.0 \ci{$-$2.9}{$-$1.0} & {\bf +19.6} & {\bf +20.2} & 0.95$\times$ / 0.94$\times$ \\
+\constraint & $-$9.0 \ci{$-$10.0}{$-$8.1} & $-$8.7 \ci{$-$9.7}{$-$7.7} & $-$44.8 & $-$44.8 & 0.41$\times$ / 0.41$\times$ \\
+\textit{Control:} \neutrallong & $-$1.4 & $-$1.1 & -- & -- & 0.94$\times$ / 0.95$\times$ \\
+\bottomrule
+\end{tabular}}
+\caption{Greedy decoding \versus a full temperature-0.7 sampling replicate (top-$p$ 0.95; 67,500 generations each), pooled over models and tasks, with 95\% CIs. Best category per column in \textbf{bold}. Category-level effects move by at most 0.6\pp (lenient) and 0.7\pp (strict).}
+\label{tab:replicate}
+\end{table}

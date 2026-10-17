@@ -1,0 +1,28 @@
+\section{Discussion}
+\label{sec:discussion}
+
+{\bf Why are safety prompts so cheap?} Our models appear to treat safety boilerplate as a tone instruction. They add caveats and disclaimers, but they still commit to an answer on benign academic questions. The \tqa gain fits this reading: an instruction such as ``never present uncertain information as fact'' pushes against the pull toward popular misconceptions, which is exactly what \tqa measures. The costs we do see are small and specific: slightly lower accuracy on moral-judgment items, occasional refusals by \llama on harmless topics, and a strict-parser penalty because hedged answers less often end with a clean answer marker.
+
+{\bf Why do format prompts disappoint?} Format prompts trade reasoning space for structure. Asking for ``brief'' reasoning (markdown sections) or a JSON string field shortens the chain of thought, which hurts multi-step math; this agrees with prior findings on format restrictions~\cite{tam2024speak}. Models also apply format rules literally across task types, as the \drop letter spill-over shows. Still, format prompts nearly eliminate parsing failures. For a pipeline that cannot parse free text, a format prompt remains a large net win. Our results suggest a better design: let the model reason without constraints first, then request the formatted answer at the end (the \cond{format\_A} style), and write format rules that are specific to each task type.
+
+{\bf Why are constraints dangerous?} Length and style limits are usually written for user-experience reasons (``keep it short'', ``no lists''). As a side effect, they remove the reasoning tokens a model needs and make answers harder to grade. The damage is largest on multi-step math and for \qwentwo, the model whose accuracy depends most on visible reasoning. Because such constraints look harmless, they may be the most under-audited part of real system prompts.
+
+{\bf Measure on your own model.} \qwenthree is largely immune to persona and format residue, while \llama and \qwentwo are not, and only \llama produces scope refusals under a neutral deployment blurb. A fixed ``penalty'' for each prompt category does not exist. Practitioners should evaluate their own model with their own system prompt, and evaluators should consider reporting results under a representative deployment prompt in addition to the bare setting.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\para{Models.} We study three open models with 4--8B parameters. Frontier API models were not available to us, and they may behave differently, especially in refusal behaviour.
+
+\para{Precision.} The greedy \qwenthree run used FP8 weights. Since all effects are within-model, this does not bias comparisons, and the bf16 sampling replicate gives the same effects for this model (cell-level $r=0.93$), with absolute accuracies within 1\pp of the FP8 run.
+
+\para{Prompt sampling.} Three hand-written variants per category is a small sample of real system prompts, and variant-level differences are substantial (\eg \cond{format\_A} \versus \cond{format\_C}). Our category-level conclusions should be read as statements about prompts like ours.
+
+\para{Scoring.} Lenient extraction is heuristic, with about 3\% error on fallback extractions in our audit. \drop containment scoring can credit answers that list several candidates. Hedge and refusal detection relies on regular expressions and will miss paraphrases.
+
+\para{Truncation and power.} The 1,024-token limit truncated 1.7--1.8\% of persona responses (0.6\% at baseline), which slightly inflates persona losses. With 300 items per task, pooled category effects have CIs of about $\pm$1--2\pp, but single cells have CIs of about $\pm$3--5\pp, and per-subject MMLU results are underpowered.
+
+\para{Literature grounding.} Our discussion of prior work was not based on a systematic literature search for this study, and some relevant work may be missing.
+
+\subsection{Broader implications}
+Our results shift attention away from safety text and toward length and style constraints when auditing system prompts. This is good news for safety: for the models we study, adding safety guidance does not appear to buy safety at the cost of usefulness on benign tasks. At the same time, small-looking product decisions such as a word limit can silently remove a large share of a model's reasoning ability, and users would not see why answers got worse. We do not see direct risks of misuse from this work; the main risk is over-generalizing our results to models or prompts we did not test.

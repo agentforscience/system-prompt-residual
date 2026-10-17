@@ -1,0 +1,116 @@
+%%%%% PROJECT-SPECIFIC MACROS %%%%%
+% Define your project-specific terms here
+% Import with: \input{commands/macros}
+%
+% INSTRUCTIONS:
+% 1. Use \textsc{} for method/dataset/model names (small caps)
+% 2. Add \xspace at the end for automatic spacing
+% 3. Group related terms together
+% 4. Use consistent naming conventions
+
+\usepackage{xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METHOD NAMES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Your method name (replace with actual name)
+% Example: \newcommand{\ours}{{\bf YourMethod}\xspace}
+% Example: \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DATASET NAMES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dataset names (use \textsc for consistency)
+% Example: \newcommand{\datasetone}{\textsc{Dataset-One}\xspace}
+% Example: \newcommand{\datasettwo}{\textsc{Dataset-Two}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MODEL NAMES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% LLM and model names
+% Example: \newcommand{\gpt}{\textsc{GPT-4o-mini}\xspace}
+% Example: \newcommand{\llama}{\textsc{Llama-3.1-70B-Instruct}\xspace}
+% Example: \newcommand{\claude}{\textsc{Claude-3.5-Sonnet}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BASELINE NAMES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Baseline method names
+% Example: \newcommand{\baseline}{\textsc{BaselineMethod}\xspace}
+% Example: \newcommand{\fewshot}{\textsc{Few-shot}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABBREVIATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Common abbreviations used in your paper
+% Example: \newcommand{\ie}{i.e.,\xspace}
+% Example: \newcommand{\eg}{e.g.,\xspace}
+% Example: \newcommand{\cf}{cf.\xspace}
+% Example: \newcommand{\wrt}{w.r.t.\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOMAIN-SPECIFIC TERMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Terms specific to your research domain
+% Keep consistent formatting throughout the paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% USAGE EXAMPLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% GOOD:
+%   \newcommand{\hypogenic}{\textsc{HypoGeniC}\xspace}
+%   Usage: "We propose \hypogenic to generate hypotheses."
+%   Result: "We propose HypoGeniC to generate hypotheses."
+%
+% GOOD:
+%   \newcommand{\ours}{{\bf HypoGeniC}\xspace}
+%   Usage: "Our method, \ours, outperforms baselines."
+%   Result: "Our method, HypoGeniC, outperforms baselines."
+%
+% BAD (no \xspace):
+%   \newcommand{\hypogenic}{\textsc{HypoGeniC}}
+%   Usage: "\hypogenic outperforms..."
+%   Result: "HypoGeniCoutperforms..." (missing space!)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROJECT DEFINITIONS (system prompt residual effects)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Datasets
+\newcommand{\gsm}{\textsc{GSM8K}\xspace}
+\newcommand{\arc}{\textsc{ARC-C}\xspace}
+\newcommand{\mmlus}{\textsc{MMLU-Sens}\xspace}
+\newcommand{\tqa}{\textsc{TruthfulQA}\xspace}
+\newcommand{\drop}{\textsc{DROP}\xspace}
+
+% Models
+\newcommand{\llama}{\textsc{Llama-3.1-8B}\xspace}
+\newcommand{\qwentwo}{\textsc{Qwen2.5-7B}\xspace}
+\newcommand{\qwenthree}{\textsc{Qwen3-4B}\xspace}
+
+% System prompt conditions and categories
+\newcommand{\cond}[1]{\texttt{#1}}
+\newcommand{\baseline}{\cond{neutral\_short}\xspace}
+\newcommand{\neutrallong}{\cond{neutral\_long}\xspace}
+\newcommand{\nosys}{\cond{none}\xspace}
+\newcommand{\safety}{\textsc{Safety}\xspace}
+\newcommand{\persona}{\textsc{Persona}\xspace}
+\newcommand{\format}{\textsc{Format}\xspace}
+\newcommand{\constraint}{\textsc{Constraint}\xspace}
+
+% Notation and abbreviations
+\newcommand{\pp}{\,pp\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\versus}{vs.\xspace}
+\newcommand{\ci}[2]{{\scriptsize [#1, #2]}}
+\newcommand{\sig}{$^{*}$}

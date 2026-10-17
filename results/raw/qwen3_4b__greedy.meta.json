@@ -1,0 +1,15 @@
+{
+  "model": "qwen3_4b",
+  "path": "/data/transformers/hub/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554",
+  "tag": "greedy",
+  "quant": "fp8",
+  "tp": 2,
+  "eager": true,
+  "gpu_util": 0.091,
+  "temperature": 0.0,
+  "seed": 0,
+  "max_tokens": 1024,
+  "n": 22500,
+  "seconds": 3968.074824333191,
+  "out_tokens": 5583179
+}

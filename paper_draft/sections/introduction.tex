@@ -1,0 +1,49 @@
+\section{Introduction}
+\label{sec:intro}
+
+Almost every deployed language model answers users through a system prompt. A tutoring app tells the model to be ``Professor Hart''; a customer-facing assistant includes a page of safety rules; an integration requires JSON output; a chat widget asks for ``under 50 words''. Each prompt is written for one purpose, but it stays in front of {\em every} request. If a safety paragraph quietly costs accuracy, or a brand persona doubles token spend on unrelated questions, the people who write these prompts should know.
+
+This question also matters for evaluation. Benchmark numbers are usually reported with no system prompt or a minimal one, while users interact with the same model under a long, deployment-specific prompt. Whether the benchmark numbers carry over depends on how large these {\em residual effects} are.
+
+Prior work studies parts of this question in isolation. Personas in system prompts give small and inconsistent changes in factual accuracy~\cite{zheng2023helpful}. Forcing structured output such as JSON can hurt reasoning~\cite{tam2024speak}. Safety-tuned models refuse some benign requests~\cite{rottger2023xstest,cui2024orbench}. Superficial prompt-format changes can move accuracy by large margins~\cite{sclar2023quantifying}. However, these studies use different tasks, models and baselines, so they cannot tell a practitioner which {\em kind} of system prompt is costly. They also rarely separate the content of a prompt from its length, or a model's correctness from whether its answer can be parsed.
+
+{\bf Which system prompts leave residue?} We answer this with a controlled factorial experiment (\figref{fig:design}). We write three wording variants for each of four common categories (\safety, \persona, \format and \constraint) and add three controls: no system prompt, the minimal ``You are a helpful assistant.'' (our baseline), and a length-matched but behaviourally empty deployment blurb. We hold the user turn fixed and run every condition on five benchmarks and three open instruction-tuned models. We score each response twice: a lenient scorer that estimates whether the content is right, and a strict scorer that mimics a production parser. We also measure output length, hedging and refusals. All effects are paired item-level differences from the baseline.
+
+We tested four hypotheses drawn from common practitioner intuitions: safety prompts cost 4--8 points through hedging and refusal (H1); personas lengthen outputs by 30--50\% without helping (H2); format prompts are the only helpful category (H3); and constraints have the most variable effects, helping some tasks and hurting others (H4). The data contradict most of these intuitions:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \safety prompts are nearly free: $+0.2$\pp overall, $+3.7$\pp on \tqa, with hedging up to $5\times$ the baseline rate but refusals at or below 1\%.
+    \item \persona prompts roughly {\em double} output length ($1.99\times$, well above the predicted 1.3--1.5$\times$) and cost 3.1\pp of accuracy.
+    \item \format prompts reduce content accuracy ($-2.5$\pp) but improve strict-parser accuracy by $+19.6$\pp; whether they ``help'' depends entirely on the metric.
+    \item \constraint prompts are the most harmful category ($-9.0$\pp) and never help: their variance comes from ``hurts a little'' \versus ``hurts badly'' (down to $-61$\pp when a model is told not to show its work), not from helping some tasks.
+\end{itemize}
+
+\noindent Our contributions are:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We design a controlled, side-by-side comparison of four system-prompt categories with length-matched controls, fixed user turns and paired item-level statistics over 135,000 generations.
+    \item We separate content accuracy from parseability with two scorers, and show that this choice flips the sign of the conclusion for format prompts ($-2.5$\pp \versus $+19.6$\pp).
+    \item We trace how items flip from right to wrong under each category, identifying concrete failure modes: compressed reasoning under schemas, rule spill-over across task types, and chain-of-thought removal under brevity limits.
+    \item We show that the results are robust to wording variants, a length-matched control, answered-only scoring and a full temperature-0.7 replicate, and that residual effects depend strongly on the model.
+\end{itemize}
+
+The rest of the paper is organized as follows. \Secref{sec:related} reviews related work, \secref{sec:method} describes the design, \secref{sec:results} reports results, \secref{sec:discussion} discusses mechanisms and limitations, and \secref{sec:conclusion} concludes.
+
+\begin{figure}[t]
+\centering
+\resizebox{0.95\linewidth}{!}{%
+\begin{tikzpicture}[
+    font=\small,
+    box/.style={draw, rounded corners=2pt, align=center, minimum height=1.0cm, inner sep=4pt},
+    arr/.style={-{Stealth[length=2mm]}, thick}]
+  \node[box, fill=humanpurple, text width=4.3cm] (sys) at (0,1.0) {{\bf System prompt} (15)\\[1pt]\scriptsize controls: \nosys, \baseline, \neutrallong\\ \safety, \persona,\\ \format, \constraint\\ $\times$ 3 wording variants each};
+  \node[box, fill=aigreen, text width=4.3cm] (usr) at (0,-1.0) {{\bf Fixed user turn}\\[1pt]\scriptsize minimal instruction + item\\ 5 tasks $\times$ 300 items};
+  \node[box, fill=aigold!40, text width=3.0cm] (mod) at (4.6,0) {{\bf Model} (3)\\[1pt]\scriptsize \llama\\ \qwentwo\\ \qwenthree\\ greedy and $T{=}0.7$};
+  \node[box, fill=white, text width=3.4cm] (score) at (8.6,0) {{\bf Score each response}\\[1pt]\scriptsize lenient \& strict accuracy\\ output tokens\\ hedge / refusal / unparseable};
+  \node[box, fill=aired!50, text width=3.4cm] (stat) at (12.8,0) {{\bf Paired effect}\\[1pt]\scriptsize $\Delta$ \versus \baseline per item\\ bootstrap CI\\ McNemar test, Holm correction};
+  \draw[arr] (sys.east) -- (mod.west);
+  \draw[arr] (usr.east) -- (mod.west);
+  \draw[arr] (mod) -- (score);
+  \draw[arr] (score) -- (stat);
+\end{tikzpicture}}
+\caption{Experimental design. Only the system prompt changes between conditions; the user turn, decoding settings and scoring are identical. Every effect is a paired, item-level difference from the minimal baseline ``You are a helpful assistant.'' (\baseline), computed within each model.}
+\label{fig:design}
+\end{figure}

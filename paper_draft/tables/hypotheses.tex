@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}p{3.6cm}p{2.3cm}p{7.2cm}@{}}
+\toprule
+\textbf{Hypothesis} & \textbf{Verdict} & \textbf{Evidence} \\
+\midrule
+H1: \safety costs 4--8\pp via hedging and refusal & Not supported & Lenient $\Delta=+0.2$ \ci{$-$0.4}{0.9}; \tqa $+3.7$\pp. Hedging rises (1.4\%$\to$7.2\%), refusals $\le$1\%. The $-4.4$\pp strict loss comes from fewer explicit answer markers, not worse reasoning. \\
+H2: \persona adds 30--50\% length, no gain & Direction yes, magnitude no & Length $1.99\times$ \ci{1.96}{2.03}; accuracy does not improve and drops by 3.1\pp. \\
+H3: \format is the only helpful category (+2--5\pp) & Supported only for parseability & Lenient $\Delta=-2.5$ (\gsm $-4.2$, \drop $-6.4$); strict $\Delta=+19.6$. \safety, not \format, is the only category with a non-negative content effect. \\
+H4: \constraint has the largest variance, helps some tasks, hurts others by $\ge$10\pp & Partly supported & Largest cell-level SD (10.1 \versus 2.5--5.3\pp), 12/45 cells $\le-10$\pp, minimum $-61$\pp. Across-task SD (3.1) overlaps persona/format (2.8). Never helps: best cell $-1.0$\pp, 0/45 significantly positive. \\
+\bottomrule
+\end{tabular}
+\caption{Verdicts for the four hypotheses (greedy decoding; all verdicts are unchanged under $T{=}0.7$).}
+\label{tab:hypotheses}
+\end{table}

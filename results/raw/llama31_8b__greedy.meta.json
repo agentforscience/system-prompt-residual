@@ -1,0 +1,15 @@
+{
+  "model": "llama31_8b",
+  "path": "/data/transformers/hub/models--unsloth--Meta-Llama-3.1-8B-Instruct/snapshots/a2856192dd7c25b842431f39c179a6c2c2f627d1",
+  "tag": "greedy",
+  "quant": "bf16",
+  "tp": 1,
+  "eager": false,
+  "gpu_util": 0.483,
+  "temperature": 0.0,
+  "seed": 0,
+  "max_tokens": 1024,
+  "n": 22500,
+  "seconds_this_session": 3670.3089096546173,
+  "out_tokens": 3473615
+}

@@ -1,0 +1,55 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem formulation}
+Let $m$ be a model, $s$ a system prompt, and $x_i$ the $i$-th item of task $t$ with a fixed user turn. We generate a response $y_{i}^{(m,s)}$ and score it with a binary correctness function $c(\cdot)\in\{0,1\}$. The residual effect of $s$ on cell $(m,t)$ is the paired difference from the baseline system prompt $s_0=$\,\baseline:
+\begin{equation}
+\Delta_{m,t}(s) = \frac{1}{n_t}\sum_{i=1}^{n_t} \Big[c\big(y_i^{(m,s)}\big) - c\big(y_i^{(m,s_0)}\big)\Big].
+\end{equation}
+A category effect averages $\Delta_{m,t}(s)$ over the three variants $s$ in the category and the three models, and, for the ``all tasks'' column, over the five tasks with equal weight. Because every comparison is paired within a model, differences between models (size, precision) cannot confound the system-prompt effect.
+
+\subsection{System prompt conditions}
+We use 15 conditions (\tabref{tab:conditions}; full texts in Appendix~\ref{app:prompts}). The three controls separate two things a system prompt does: it changes what the model is told, and it makes the context longer. \nosys removes the system message, \baseline is the minimal prompt we use as the reference, and \neutrallong is a $\sim$150-word deployment blurb (platform history, opening hours, a mascot) with no behavioural instructions. Each of the four categories has three hand-written variants that resemble real deployment prompts. None of the prompts mention the benchmark tasks.
+
+\begin{table}[t]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}lp{10.6cm}@{}}
+\toprule
+\textbf{Group} & \textbf{Conditions} \\
+\midrule
+Controls & \nosys (no system message); \baseline = ``You are a helpful assistant.'' ({\bf baseline}); \neutrallong = $\sim$150-word behaviourally empty deployment blurb (length-matched control) \\
+\safety & A: harm-avoidance, disclaimers, ``err on the side of caution''; B: seven numbered safety rules incl.\ ``if ambiguous, ask for clarification''; C: strict content policy, acknowledge uncertainty \\
+\persona & A: Prof.\ Eleanor Hart (warm British lecturer, anecdotes); B: Max (joking start-up engineer); C: Dr.\ Amara Okafor (thorough polymath consultant) \\
+\format & A: step-by-step reasoning, then a \texttt{Final Answer: <x>} line; B: \texttt{\#\# Reasoning} / \texttt{\#\# Answer} markdown sections; C: JSON object \texttt{\{"reasoning", "answer"\}} \\
+\constraint & A: under 50 words, no intermediate work; B: plain prose only, no lists/markdown/LaTeX, at most three paragraphs, formal; C: at most three sentences, no follow-up questions, no hedging words, commit to one answer \\
+\bottomrule
+\end{tabular}
+\caption{The 15 system-prompt conditions: three controls and four categories with three wording variants each.}
+\label{tab:conditions}
+\end{table}
+
+\subsection{Tasks}
+We sample 300 items per task with a fixed seed (42). The tasks cover multi-step math, multiple-choice (MC) reasoning, sensitive subjects, misconceptions and extraction:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \gsm~\cite{cobbe2021gsm8k} (test split): numeric math word problems, which depend on multi-step reasoning.
+    \item \arc~\cite{clark2018arc} (ARC-Challenge test split): 3--5-way MC science questions.
+    \item \mmlus: 4-way MC items from 14 MMLU~\cite{hendrycks2021mmlu} subjects (\eg medicine, law, security, morality, psychology, sexuality) where safety prompts could plausibly trigger hedging or refusal.
+    \item \tqa~\cite{lin2022truthfulqa} (MC1, validation): misconception-laden questions with up to six shuffled options.
+    \item \drop~\cite{dua2019drop} (validation, single-gold-span items): short numeric or span answers extracted from a passage.
+\end{itemize}
+The user turn is identical across conditions and contains only a minimal instruction (``Solve the following math problem.'', ``Answer the following multiple-choice question.'', or ``Read the passage and answer the question.'') followed by the item.
+
+\subsection{Models and inference}
+We use three open instruction-tuned models from two families and three generations: \qwentwo (Qwen2.5-7B-Instruct~\cite{qwen2025qwen25}), \llama (Llama-3.1-8B-Instruct~\cite{grattafiori2024llama3}) and \qwenthree (Qwen3-4B-Instruct-2507~\cite{yang2025qwen3}). We serve them locally with vLLM~\cite{kwon2023vllm}. The main run uses greedy decoding with at most 1,024 new tokens and a 4,096-token context. \qwentwo and \llama run in bf16; \qwenthree runs with FP8 weights because of GPU contention on a shared host. We also rerun the full grid with temperature 0.7, top-$p$ 0.95 and a fixed seed, with all models in bf16. In total we collect 135,000 generations and about 25M output tokens.
+
+\subsection{Scoring}
+\para{Lenient accuracy (primary).} This scorer estimates whether the {\em content} of the answer is right. It first uses an explicit answer marker if one is present. Otherwise it falls back to robust extraction: the last number for \gsm; for MC tasks, a bolded, initial or closing option letter, then exact option text, then a conservative fuzzy match to option text. For \drop, the gold answer must be contained in the answer line or sentence, with numbers matched numerically. We fixed the MC extractor iteratively after inspecting failures; a final hand audit of 30 random fallback extractions found 29 consistent with the response ($\sim$3\% error).
+
+\para{Strict accuracy (secondary).} This scorer mimics a production parser. It only accepts an explicit marker: a JSON \texttt{answer} field, \texttt{Final Answer:}, \texttt{\#\# Answer}, \texttt{Answer:}, ``the answer is'', or \texttt{\textbackslash boxed\{\}}.
+
+\para{Behaviour.} We record output tokens, a refusal or clarification-request flag and a hedge/caveat flag (both from regular-expression lexicons), and whether any answer could be extracted.
+
+\subsection{Statistics}
+For each cell (model $\times$ task $\times$ condition) we compute the paired difference from baseline, an exact McNemar test~\cite{mcnemar1947note}, and a 95\% bootstrap confidence interval that resamples items (2,000 resamples). For category effects we resample items jointly across all models and variants (a paired item bootstrap), and apply Holm correction~\cite{holm1979simple} over the family of 20 category $\times$ task tests. We report length effects as the ratio of mean output tokens to the baseline. For H4 we measure dispersion in two ways: the standard deviation (SD) of the pooled category effect across the five tasks (with a bootstrap CI), and the SD across all 45 model $\times$ task $\times$ variant cells.

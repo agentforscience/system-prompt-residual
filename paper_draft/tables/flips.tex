@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+& \multicolumn{3}{c}{\textbf{Flips}} & \multicolumn{4}{c}{\textbf{Right $\to$ wrong, by failure type}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-8}
+\textbf{Condition} & Right$\to$wrong & Wrong$\to$right & Net (pp) & Refusal & Unparseable & Hedged-wrong & Plain wrong \\
+\midrule
+\cond{safety\_A}      & 162 & 180 & {\bf +0.4} & 2 & 17 & 21 & 122 \\
+\cond{safety\_B}      & 162 & 176 & +0.3 & 6 & 12 & 9 & 135 \\
+\cond{persona\_A}     & 450 & 258 & $-$4.3 & 1 & 53 & 14 & 382 \\
+\cond{format\_C} (JSON) & 441 & 264 & $-$3.9 & 1 & 2 & 1 & 437 \\
+\cond{constraint\_A}  & 544 & 157 & $-$8.6 & 1 & 3 & 0 & 540 \\
+\cond{constraint\_B}  & 593 & 187 & $-$9.0 & 0 & {\bf 223} & 10 & 360 \\
+\bottomrule
+\end{tabular}}
+\caption{How items flip relative to \baseline for selected conditions (greedy; 4,500 item--model pairs per condition). Safety losses are balanced by gains, and refusal is never a meaningful failure mode. Most losses are plain wrong answers, except under \cond{constraint\_B}, where over a third of losses are answers the scorer cannot map to an option.}
+\label{tab:flips}
+\end{table}

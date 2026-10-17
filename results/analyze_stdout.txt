@@ -1,0 +1,234 @@
+
+===== greedy / correct_lenient =====
+       group       task  delta     lo     hi  p_boot  len_ratio  len_lo  len_hi  p_holm
+      safety      gsm8k  -0.81  -2.08   0.37    0.20       1.00    0.98    1.02    1.00
+      safety        arc  -0.44  -1.33   0.37    0.28       1.08    1.06    1.10    1.00
+      safety  mmlu_sens  -1.56  -3.15   0.04    0.06       1.09    1.07    1.12    0.48
+      safety truthfulqa   3.67   1.96   5.33    0.00       1.13    1.10    1.17    0.01
+      safety       drop   0.30  -1.22   1.85    0.70       1.07    1.03    1.11    1.00
+      safety        ALL   0.23  -0.42   0.90    0.52       1.07    1.06    1.09     NaN
+      safety STRUCTURED   0.49  -0.25   1.27    0.19       1.09    1.08    1.11     NaN
+     persona      gsm8k  -5.67  -7.37  -3.85    0.00       1.29    1.26    1.32    0.01
+     persona        arc  -2.37  -3.85  -0.89    0.00       2.22    2.13    2.31    0.03
+     persona  mmlu_sens  -3.41  -5.74  -1.00    0.00       1.82    1.76    1.88    0.04
+     persona truthfulqa   1.37  -0.59   3.41    0.18       2.62    2.53    2.72    1.00
+     persona       drop  -5.37  -7.52  -3.19    0.00       2.00    1.89    2.12    0.01
+     persona        ALL  -3.09  -3.96  -2.21    0.00       1.99    1.96    2.03     NaN
+     persona STRUCTURED  -2.44  -3.44  -1.46    0.00       2.17    2.12    2.21     NaN
+      format      gsm8k  -4.19  -6.00  -2.37    0.00       0.66    0.65    0.68    0.01
+      format        arc   0.59  -0.78   2.15    0.43       0.92    0.89    0.96    1.00
+      format  mmlu_sens  -0.63  -3.26   1.93    0.66       0.82    0.80    0.85    1.00
+      format truthfulqa  -2.11  -4.37   0.22    0.08       1.12    1.08    1.17    0.58
+      format       drop  -6.37  -9.00  -3.63    0.00       1.24    1.16    1.32    0.01
+      format        ALL  -2.54  -3.55  -1.55    0.00       0.95    0.93    0.97     NaN
+      format STRUCTURED  -2.13  -3.28  -0.98    0.00       1.03    1.00    1.05     NaN
+  constraint      gsm8k -14.33 -16.56 -12.30    0.00       0.38    0.37    0.39    0.01
+  constraint        arc  -6.37  -7.78  -4.93    0.00       0.40    0.38    0.41    0.01
+  constraint  mmlu_sens  -8.78 -11.19  -6.48    0.00       0.33    0.32    0.34    0.01
+  constraint truthfulqa  -8.63 -10.89  -6.44    0.00       0.43    0.41    0.44    0.01
+  constraint       drop  -7.07  -9.19  -4.89    0.00       0.49    0.46    0.53    0.01
+  constraint        ALL  -9.04  -9.96  -8.10    0.00       0.41    0.40    0.42     NaN
+  constraint STRUCTURED  -7.71  -8.73  -6.69    0.00       0.41    0.40    0.42     NaN
+        none      gsm8k  -1.78  -3.11  -0.56    0.01       0.97    0.95    0.99     NaN
+        none        arc  -0.22  -1.11   0.67    0.65       0.95    0.93    0.97     NaN
+        none  mmlu_sens  -0.33  -1.78   1.11    0.67       0.98    0.95    1.01     NaN
+        none truthfulqa   0.22  -1.33   1.78    0.72       0.97    0.93    1.00     NaN
+        none       drop  -0.22  -1.89   1.33    0.77       1.00    0.97    1.03     NaN
+        none        ALL  -0.47  -1.09   0.11    0.14       0.97    0.96    0.99     NaN
+        none STRUCTURED  -0.14  -0.86   0.53    0.72       0.98    0.96    0.99     NaN
+neutral_long      gsm8k  -1.56  -3.22   0.11    0.07       0.98    0.95    1.00     NaN
+neutral_long        arc  -0.78  -2.00   0.44    0.20       0.92    0.89    0.95     NaN
+neutral_long  mmlu_sens  -2.00  -3.78  -0.11    0.04       0.95    0.92    0.98     NaN
+neutral_long truthfulqa  -1.78  -4.00   0.56    0.13       0.89    0.85    0.93     NaN
+neutral_long       drop  -0.67  -2.22   0.89    0.39       0.97    0.94    1.01     NaN
+neutral_long        ALL  -1.36  -2.13  -0.58    0.00       0.94    0.93    0.96     NaN
+neutral_long STRUCTURED  -1.31  -2.19  -0.44    0.00       0.93    0.92    0.95     NaN
+  category  sd_task  sd_task_lo  sd_task_hi  sd_model_task  sd_cell  range_task  min_cell  max_cell  n_cells_le_m10  n_cells_pos_sig  n_cells_neg_sig  n_cells
+    safety     2.03        1.35        2.89           2.30     2.54        5.22     -9.00      6.67               0                4                4       45
+   persona     2.84        2.03        3.90           3.82     4.68        7.04    -17.33      6.00               5                2               17       45
+    format     2.79        2.01        4.02           3.74     5.25        6.96    -21.00      5.00               6                1                9       45
+constraint     3.13        2.41        4.26           7.46    10.14        7.96    -61.00     -1.00              12                0               34       45
+
+===== greedy / correct_strict =====
+       group       task  delta     lo     hi  p_boot  len_ratio  len_lo  len_hi  p_holm
+      safety      gsm8k  -5.37  -6.56  -4.22    0.00       1.00    0.98    1.02    0.01
+      safety        arc  -5.00  -6.78  -3.33    0.00       1.08    1.06    1.10    0.01
+      safety  mmlu_sens  -7.67  -9.56  -5.74    0.00       1.09    1.07    1.12    0.01
+      safety truthfulqa  -5.63  -7.93  -3.33    0.00       1.13    1.10    1.17    0.01
+      safety       drop   1.70   0.63   2.89    0.00       1.07    1.03    1.11    0.01
+      safety        ALL  -4.39  -5.21  -3.65    0.00       1.07    1.06    1.09     NaN
+      safety STRUCTURED  -4.15  -5.11  -3.28    0.00       1.09    1.08    1.11     NaN
+     persona      gsm8k -31.48 -32.89 -30.11    0.00       1.29    1.26    1.32    0.01
+     persona        arc -17.96 -20.33 -15.74    0.00       2.22    2.14    2.31    0.01
+     persona  mmlu_sens -15.78 -18.48 -13.11    0.00       1.82    1.77    1.89    0.01
+     persona truthfulqa -14.44 -17.04 -11.70    0.00       2.62    2.52    2.72    0.01
+     persona       drop   5.52   3.74   7.37    0.00       2.00    1.90    2.12    0.01
+     persona        ALL -14.83 -15.86 -13.83    0.00       1.99    1.96    2.03     NaN
+     persona STRUCTURED -10.67 -11.93  -9.48    0.00       2.17    2.12    2.21     NaN
+      format      gsm8k  23.93  22.30  25.44    0.00       0.66    0.65    0.68    0.01
+      format        arc   9.30   6.93  11.74    0.00       0.92    0.89    0.96    0.01
+      format  mmlu_sens   4.22   1.52   6.85    0.00       0.82    0.80    0.85    0.01
+      format truthfulqa   2.59   0.22   5.22    0.03       1.12    1.08    1.17    0.03
+      format       drop  58.07  55.07  61.04    0.00       1.24    1.16    1.33    0.01
+      format        ALL  19.62  18.50  20.78    0.00       0.95    0.93    0.98     NaN
+      format STRUCTURED  18.55  17.20  19.90    0.00       1.03    1.00    1.05     NaN
+  constraint      gsm8k -55.63 -57.15 -54.15    0.00       0.38    0.37    0.39    0.01
+  constraint        arc -62.41 -65.19 -59.41    0.00       0.40    0.38    0.41    0.01
+  constraint  mmlu_sens -45.48 -48.96 -41.96    0.00       0.33    0.32    0.34    0.01
+  constraint truthfulqa -41.56 -45.26 -37.89    0.00       0.43    0.41    0.44    0.01
+  constraint       drop -18.93 -20.74 -17.15    0.00       0.49    0.47    0.53    0.01
+  constraint        ALL -44.80 -46.04 -43.49    0.00       0.41    0.40    0.41     NaN
+  constraint STRUCTURED -42.09 -43.61 -40.54    0.00       0.41    0.40    0.42     NaN
+        none      gsm8k -18.56 -20.67 -16.44    0.00       0.97    0.95    0.99     NaN
+        none        arc  -1.67  -3.22  -0.22    0.02       0.95    0.93    0.97     NaN
+        none  mmlu_sens  -1.67  -3.44   0.11    0.07       0.98    0.95    1.01     NaN
+        none truthfulqa  -1.89  -3.89   0.00    0.06       0.97    0.94    1.00     NaN
+        none       drop  -0.56  -1.56   0.44    0.33       1.00    0.97    1.03     NaN
+        none        ALL  -4.87  -5.64  -4.11    0.00       0.97    0.96    0.99     NaN
+        none STRUCTURED  -1.44  -2.28  -0.64    0.00       0.98    0.96    0.99     NaN
+neutral_long      gsm8k -11.44 -13.56  -9.33    0.00       0.98    0.95    1.00     NaN
+neutral_long        arc  -3.44  -5.56  -1.44    0.00       0.92    0.89    0.95     NaN
+neutral_long  mmlu_sens  -5.67  -7.89  -3.44    0.00       0.95    0.92    0.98     NaN
+neutral_long truthfulqa  -7.78 -10.45  -4.89    0.00       0.89    0.86    0.93     NaN
+neutral_long       drop  -0.89  -2.33   0.56    0.25       0.97    0.94    1.01     NaN
+neutral_long        ALL  -5.84  -6.84  -4.89    0.00       0.94    0.93    0.96     NaN
+neutral_long STRUCTURED  -4.44  -5.53  -3.36    0.00       0.93    0.92    0.95     NaN
+  category  sd_task  sd_task_lo  sd_task_hi  sd_model_task  sd_cell  range_task  min_cell  max_cell  n_cells_le_m10  n_cells_pos_sig  n_cells_neg_sig  n_cells
+    safety     3.56        2.97        4.35           6.00     7.54        9.37    -38.33      5.67               7                2               19       45
+   persona    13.25       12.47       14.19          23.42    23.83       37.00    -93.33     21.00              22                8               27       45
+    format    23.08       21.78       24.65          30.35    29.89       55.48    -12.67     89.33               2               23                2       45
+constraint    16.64       15.71       17.82          27.89    30.08       43.48    -93.67      0.67              36                0               36       45
+               refusal  hedge  no_answer_lenient  strict_found    category  mean_tokens  truncated
+condition                                                                                         
+none               0.1    1.5                0.1          67.7     control        171.2        0.6
+neutral_short      0.2    1.4                0.2          73.0     control        175.9        0.6
+neutral_long       1.1    1.7                1.2          66.2     control        166.3        0.5
+safety_A           0.3    7.2                0.9          66.4      safety        195.5        0.5
+safety_B           0.6    4.0                1.0          63.1      safety        184.4        0.7
+safety_C           1.0    2.5                0.8          68.4      safety        182.8        0.6
+persona_A          0.1    3.8                1.9          52.0     persona        349.9        1.8
+persona_B          0.5    2.5                1.2          55.7     persona        308.4        1.8
+persona_C          0.1    3.6                1.2          56.3     persona        333.3        1.7
+format_A           0.2    0.5                0.3          99.4      format        190.0        1.0
+format_B           0.1    0.5                0.1          99.8      format        161.1        0.5
+format_C           0.1    0.4                0.2          99.5      format        115.1        0.8
+constraint_A       0.0    0.0                0.3           7.2  constraint         27.4        0.0
+constraint_B       0.0    1.6                7.4          28.5  constraint        134.7        0.1
+constraint_C       0.0    0.1                2.9          17.1  constraint         43.4        0.0
+
+===== t07s1 / correct_lenient =====
+       group       task  delta     lo     hi  p_boot  len_ratio  len_lo  len_hi  p_holm
+      safety      gsm8k  -0.59  -1.96   0.78    0.42       0.99    0.97    1.01    1.00
+      safety        arc  -0.07  -1.19   1.11    0.89       1.07    1.04    1.10    1.00
+      safety  mmlu_sens  -1.67  -3.59   0.33    0.11       1.10    1.07    1.12    0.75
+      safety truthfulqa   4.41   2.48   6.30    0.00       1.13    1.10    1.17    0.01
+      safety       drop   0.04  -1.67   1.74    0.97       1.07    1.03    1.11    1.00
+      safety        ALL   0.42  -0.29   1.13    0.26       1.07    1.06    1.09     NaN
+      safety STRUCTURED   0.68  -0.19   1.56    0.13       1.09    1.08    1.11     NaN
+     persona      gsm8k  -5.07  -6.89  -3.18    0.00       1.30    1.27    1.33    0.01
+     persona        arc  -2.22  -3.67  -0.63    0.01       2.24    2.14    2.34    0.06
+     persona  mmlu_sens  -3.22  -5.44  -1.18    0.00       1.82    1.76    1.88    0.03
+     persona truthfulqa   1.78  -0.41   4.07    0.12       2.53    2.44    2.63    0.75
+     persona       drop  -5.07  -7.11  -3.00    0.00       2.06    1.95    2.18    0.01
+     persona        ALL  -2.76  -3.63  -1.88    0.00       1.99    1.95    2.03     NaN
+     persona STRUCTURED  -2.19  -3.21  -1.16    0.00       2.16    2.12    2.21     NaN
+      format      gsm8k  -3.00  -4.89  -1.04    0.00       0.66    0.64    0.67    0.03
+      format        arc   1.19  -0.11   2.59    0.08       0.92    0.88    0.95    0.63
+      format  mmlu_sens  -0.37  -2.78   2.15    0.77       0.81    0.79    0.83    1.00
+      format truthfulqa  -1.93  -4.37   0.44    0.11       1.10    1.05    1.14    0.75
+      format       drop  -5.63  -8.22  -3.04    0.00       1.20    1.14    1.26    0.01
+      format        ALL  -1.95  -2.93  -0.96    0.00       0.94    0.92    0.95     NaN
+      format STRUCTURED  -1.69  -2.84  -0.53    0.01       1.01    0.98    1.03     NaN
+  constraint      gsm8k -13.70 -15.78 -11.48    0.00       0.38    0.37    0.39    0.01
+  constraint        arc  -6.63  -8.22  -5.04    0.00       0.41    0.39    0.43    0.01
+  constraint  mmlu_sens  -8.48 -10.82  -6.30    0.00       0.34    0.32    0.35    0.01
+  constraint truthfulqa  -9.44 -11.85  -7.07    0.00       0.43    0.41    0.45    0.01
+  constraint       drop  -5.19  -7.48  -2.81    0.00       0.50    0.47    0.53    0.01
+  constraint        ALL  -8.69  -9.67  -7.70    0.00       0.41    0.40    0.42     NaN
+  constraint STRUCTURED  -7.44  -8.55  -6.32    0.00       0.42    0.41    0.43     NaN
+        none      gsm8k  -0.89  -2.78   1.00    0.39       0.95    0.93    0.97     NaN
+        none        arc   0.11  -0.89   1.11    0.85       0.96    0.93    0.98     NaN
+        none  mmlu_sens  -0.44  -2.67   1.67    0.67       0.98    0.96    1.01     NaN
+        none truthfulqa   0.78  -0.89   2.44    0.32       0.97    0.93    1.00     NaN
+        none       drop  -0.44  -2.22   1.22    0.60       1.00    0.96    1.04     NaN
+        none        ALL  -0.18  -0.98   0.62    0.67       0.97    0.96    0.99     NaN
+        none STRUCTURED   0.00  -0.86   0.86    0.99       0.98    0.96    0.99     NaN
+neutral_long      gsm8k  -1.33  -3.22   0.44    0.16       0.97    0.95    0.99     NaN
+neutral_long        arc  -0.67  -2.00   0.67    0.39       0.92    0.89    0.95     NaN
+neutral_long  mmlu_sens  -1.67  -4.00   0.56    0.13       0.97    0.94    1.00     NaN
+neutral_long truthfulqa  -1.89  -4.33   0.44    0.12       0.90    0.86    0.94     NaN
+neutral_long       drop  -0.11  -2.22   1.89    0.95       1.00    0.96    1.03     NaN
+neutral_long        ALL  -1.13  -2.02  -0.22    0.02       0.95    0.94    0.96     NaN
+neutral_long STRUCTURED  -1.08  -2.11  -0.05    0.04       0.95    0.93    0.96     NaN
+  category  sd_task  sd_task_lo  sd_task_hi  sd_model_task  sd_cell  range_task  min_cell  max_cell  n_cells_le_m10  n_cells_pos_sig  n_cells_neg_sig  n_cells
+    safety     2.33        1.57        3.42           2.73     2.89        6.07     -8.33      7.67               0                4                2       45
+   persona     2.82        1.89        4.05           4.32     5.45        6.85    -23.67     10.00               4                3               11       45
+    format     2.60        1.74        3.86           3.74     5.16        6.81    -18.33      5.67               4                1               11       45
+constraint     3.25        2.31        4.45           8.26    10.82        8.52    -62.00      2.33              14                0               32       45
+
+===== t07s1 / correct_strict =====
+       group       task  delta     lo     hi  p_boot  len_ratio  len_lo  len_hi  p_holm
+      safety      gsm8k  -6.44  -7.70  -5.15    0.00       0.99    0.97    1.01    0.01
+      safety        arc  -6.52  -8.59  -4.48    0.00       1.07    1.04    1.10    0.01
+      safety  mmlu_sens  -8.48 -11.00  -6.15    0.00       1.10    1.07    1.12    0.01
+      safety truthfulqa  -5.48  -7.81  -3.22    0.00       1.13    1.10    1.17    0.01
+      safety       drop   1.41   0.11   2.74    0.03       1.07    1.03    1.11    0.03
+      safety        ALL  -5.10  -6.02  -4.25    0.00       1.07    1.06    1.09     NaN
+      safety STRUCTURED  -4.77  -5.85  -3.75    0.00       1.09    1.08    1.11     NaN
+     persona      gsm8k -30.63 -32.15 -29.07    0.00       1.30    1.27    1.33    0.01
+     persona        arc -18.70 -21.19 -16.26    0.00       2.24    2.14    2.34    0.01
+     persona  mmlu_sens -16.96 -19.74 -14.26    0.00       1.82    1.76    1.88    0.01
+     persona truthfulqa -14.48 -17.41 -11.48    0.00       2.53    2.45    2.63    0.01
+     persona       drop   4.96   3.26   6.81    0.00       2.06    1.96    2.18    0.01
+     persona        ALL -15.16 -16.24 -14.12    0.00       1.99    1.95    2.03     NaN
+     persona STRUCTURED -11.30 -12.58 -10.11    0.00       2.16    2.12    2.21     NaN
+      format      gsm8k  23.67  21.96  25.37    0.00       0.66    0.64    0.67    0.01
+      format        arc   9.48   7.11  11.89    0.00       0.92    0.88    0.95    0.01
+      format  mmlu_sens   4.85   2.15   7.56    0.00       0.81    0.79    0.83    0.01
+      format truthfulqa   5.26   2.59   7.78    0.00       1.10    1.06    1.14    0.01
+      format       drop  57.52  54.33  60.67    0.00       1.20    1.14    1.27    0.01
+      format        ALL  20.16  19.01  21.33    0.00       0.94    0.92    0.95     NaN
+      format STRUCTURED  19.28  17.89  20.66    0.00       1.01    0.99    1.03     NaN
+  constraint      gsm8k -55.89 -57.41 -54.30    0.00       0.38    0.37    0.39    0.01
+  constraint        arc -63.04 -65.89 -59.93    0.00       0.41    0.39    0.43    0.01
+  constraint  mmlu_sens -44.81 -48.37 -41.30    0.00       0.34    0.32    0.35    0.01
+  constraint truthfulqa -41.89 -45.93 -38.07    0.00       0.43    0.41    0.45    0.01
+  constraint       drop -18.44 -20.30 -16.56    0.00       0.50    0.47    0.53    0.01
+  constraint        ALL -44.81 -46.15 -43.50    0.00       0.41    0.40    0.42     NaN
+  constraint STRUCTURED -42.05 -43.65 -40.46    0.00       0.42    0.41    0.43     NaN
+        none      gsm8k -17.67 -19.78 -15.56    0.00       0.95    0.93    0.97     NaN
+        none        arc  -2.33  -4.22  -0.44    0.02       0.96    0.93    0.98     NaN
+        none  mmlu_sens  -0.67  -3.11   1.78    0.62       0.98    0.96    1.01     NaN
+        none truthfulqa  -1.11  -3.56   1.22    0.37       0.97    0.93    1.00     NaN
+        none       drop  -0.00  -1.44   1.44    0.99       1.00    0.96    1.04     NaN
+        none        ALL  -4.36  -5.31  -3.42    0.00       0.97    0.96    0.99     NaN
+        none STRUCTURED  -1.03  -2.08   0.03    0.06       0.98    0.96    0.99     NaN
+neutral_long      gsm8k -13.78 -16.00 -11.67    0.00       0.97    0.95    0.99     NaN
+neutral_long        arc  -5.67  -7.89  -3.56    0.00       0.92    0.89    0.95     NaN
+neutral_long  mmlu_sens  -6.22  -9.00  -3.67    0.00       0.97    0.94    1.00     NaN
+neutral_long truthfulqa  -5.89  -8.56  -3.22    0.00       0.90    0.86    0.94     NaN
+neutral_long       drop   0.33  -1.33   1.89    0.69       1.00    0.96    1.03     NaN
+neutral_long        ALL  -6.24  -7.29  -5.20    0.00       0.95    0.94    0.97     NaN
+neutral_long STRUCTURED  -4.36  -5.50  -3.19    0.00       0.95    0.93    0.96     NaN
+  category  sd_task  sd_task_lo  sd_task_hi  sd_model_task  sd_cell  range_task  min_cell  max_cell  n_cells_le_m10  n_cells_pos_sig  n_cells_neg_sig  n_cells
+    safety     3.80        3.13        4.67           6.89     8.04        9.89    -38.00      6.00              10                1               18       45
+   persona    12.85       11.88       13.83          23.19    23.45       35.59    -91.00     22.67              25                7               28       45
+    format    22.24       20.77       23.69          29.19    28.75       52.67     -9.67     85.33               0               29                2       45
+constraint    17.02       15.95       18.16          27.34    29.06       44.59    -94.33      0.33              36                0               39       45
+               refusal  hedge  no_answer_lenient  strict_found    category  mean_tokens  truncated
+condition                                                                                         
+none               0.1    1.6                0.2          67.0     control        172.2        0.4
+neutral_short      0.1    1.3                0.3          71.7     control        177.8        0.5
+neutral_long       0.9    2.0                1.1          65.2     control        169.4        0.3
+safety_A           0.4    6.8                1.1          64.2      safety        197.1        0.6
+safety_B           0.5    3.9                0.9          61.2      safety        184.4        0.4
+safety_C           0.8    2.7                0.9          66.3      safety        186.0        0.5
+persona_A          0.2    3.6                2.6          48.8     persona        350.1        1.9
+persona_B          0.3    2.0                1.8          53.1     persona        311.8        2.1
+persona_C          0.1    3.6                1.5          55.8     persona        339.7        1.6
+format_A           0.2    0.6                0.2          99.4      format        189.4        0.7
+format_B           0.2    0.6                0.1          99.6      format        162.8        0.7
+format_C           0.1    0.5                0.1          99.8      format        111.6        0.2
+constraint_A       0.0    0.1                0.3           7.9  constraint         28.5        0.0
+constraint_B       0.0    2.1                7.9          24.7  constraint        136.9        0.0
+constraint_C       0.1    0.0                3.4          16.8  constraint         44.6        0.0

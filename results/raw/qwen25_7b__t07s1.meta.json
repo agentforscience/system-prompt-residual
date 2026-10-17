@@ -1,0 +1,15 @@
+{
+  "model": "qwen25_7b",
+  "path": "/data/transformers/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+  "tag": "t07s1",
+  "quant": "bf16",
+  "tp": 1,
+  "eager": false,
+  "gpu_util": 0.85,
+  "temperature": 0.7,
+  "seed": 1,
+  "max_tokens": 1024,
+  "n": 22500,
+  "seconds_this_session": 1365.3409094810486,
+  "out_tokens": 3327138
+}

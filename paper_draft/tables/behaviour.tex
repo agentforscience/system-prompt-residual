@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Condition} & \textbf{Refusal / clarif.\ (\%)} & \textbf{Hedge / caveat (\%)} & \textbf{Unparseable (\%)} \\
+\midrule
+\baseline & 0.2 & 1.4 & 0.2 \\
+\neutrallong & {\bf 1.1} & 1.7 & 1.2 \\
+\midrule
+\cond{safety\_A / B / C} & 0.3 / 0.6 / 1.0 & {\bf 7.2} / 4.0 / 2.5 & 0.9 / 1.0 / 0.8 \\
+\cond{persona\_A / B / C} & 0.1 / 0.5 / 0.1 & 3.8 / 2.5 / 3.6 & 1.9 / 1.2 / 1.2 \\
+\cond{format\_A / B / C} & $\le$0.2 & $\le$0.5 & $\le$0.3 \\
+\cond{constraint\_A / B / C} & 0.0 & 0.0 / 1.6 / 0.1 & 0.3 / {\bf 7.4} / 2.9 \\
+\bottomrule
+\end{tabular}
+\caption{Response behaviour by condition (greedy, all tasks and models; 4,500 responses per condition). The highest value in each column is in \textbf{bold}. Safety prompts raise hedging up to $5\times$ the baseline rate, yet refusals stay at or below 1\% in every condition. The highest refusal rate comes from the behaviourally empty \neutrallong blurb.}
+\label{tab:behaviour}
+\end{table}

@@ -1,0 +1,72 @@
+   condition   category  n_items  n_flips_to_wrong  n_flips_to_right    net_pp  refusal  no_answer  hedged_wrong  wrong_answer
+        none    control     4500               114                93 -0.466667        0          2             5           107
+neutral_long    control     4500               198               137 -1.355556       19          8             6           165
+    safety_A     safety     4500               162               180  0.400000        2         17            21           122
+    safety_B     safety     4500               162               176  0.311111        6         12             9           135
+    safety_C     safety     4500               131               130 -0.022222       12          3             6           110
+   persona_A    persona     4500               450               258 -4.266667        1         53            14           382
+   persona_B    persona     4500               411               236 -3.888889        1         33            10           367
+   persona_C    persona     4500               277               227 -1.111111        1         33            11           232
+    format_A     format     4500               323               277 -1.022222        0          6             1           316
+    format_B     format     4500               361               241 -2.666667        0          0             3           358
+    format_C     format     4500               441               264 -3.933333        1          2             1           437
+constraint_A constraint     4500               544               157 -8.600000        1          3             0           540
+constraint_B constraint     4500               593               187 -9.022222        0        223            10           360
+constraint_C constraint     4500               583               156 -9.488889        2         89             1           491
+
+% of DROP answers that are a single capital letter:
+ model          llama31_8b  qwen25_7b  qwen3_4b
+condition                                     
+constraint_A          0.0        0.0       0.0
+constraint_B          0.0        0.0       0.0
+constraint_C          0.0        0.0       0.0
+format_A              1.3       18.0       0.0
+format_B              3.3        3.7       0.7
+format_C              3.7        2.0       0.0
+neutral_long          0.0        0.0       0.0
+neutral_short         0.0        0.0       0.0
+none                  0.0        0.0       0.0
+persona_A             0.0        0.0       0.0
+persona_B             0.0        0.0       0.0
+persona_C             0.0        0.0       0.0
+safety_A              0.0        0.0       0.0
+safety_B              0.0        0.0       0.0
+safety_C              0.0        0.0       0.0
+
+Safety effect by MMLU subject:
+                          baseline  safety  n_items  delta
+subject                                                  
+moral_scenarios              59.9    51.6     59.0   -8.3
+medical_genetics             83.3    77.8      8.0   -5.6
+professional_medicine        73.8    68.3     14.0   -5.6
+human_sexuality              71.8    70.1     13.0   -1.7
+jurisprudence                85.7    84.1      7.0   -1.6
+professional_law             53.0    52.4     73.0   -0.6
+college_medicine             60.0    60.0      5.0    0.0
+virology                     56.7    56.7     10.0    0.0
+professional_psychology      70.1    70.9     39.0    0.9
+moral_disputes               75.0    76.4     16.0    1.4
+nutrition                    78.9    80.7     19.0    1.8
+computer_security            91.7    94.4     12.0    2.8
+clinical_knowledge           75.6    79.3     15.0    3.7
+security_studies             63.3    67.8     10.0    4.4
+
+Per-model category effects (pp, mean over tasks & variants) and length ratios:
+                 delta                     len_ratio                   
+model      llama31_8b qwen25_7b qwen3_4b llama31_8b qwen25_7b qwen3_4b
+category                                                              
+constraint      -4.64    -14.22    -8.24       0.55      0.33     0.37
+control         -1.30     -0.97    -0.47       1.04      0.88     0.96
+format          -4.13     -3.71     0.22       1.14      0.82     0.94
+persona         -4.38     -5.07     0.18       2.10      1.76     2.11
+safety          -0.69      0.31     1.07       1.19      1.04     1.04
+
+Effect restricted to items answered in both conditions (pp, mean over tasks):
+ category
+constraint   -6.90
+control      -0.67
+format       -2.57
+persona      -2.29
+safety        0.52
+
+Greedy vs T=0.7 effect agreement: {'correct_lenient': {'n': 210, 'pearson': np.float64(0.9545626347250228), 'spearman': np.float64(0.8729200186159776), 'sign_agree': 0.7619047619047619}}
